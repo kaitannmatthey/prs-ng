@@ -1,0 +1,61 @@
+<div class="component">
+    <section class="heading">
+        <span class="page-title font-weight-bold font-italic">{{title}}</span>
+        <span> | <a routerLink="/users/list">Return to list...</a></span>
+    </section>
+    <p *ngIf="!user">Loading...</p>
+    <div *ngIf="user">
+        <main class="single">
+            <table class="table table-sm">
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input [(ngModel)]="user.firstName" class="rounded" type="text" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input [(ngModel)]="user.lastName" class="rounded" type="text" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone Number:</td>
+                    <td>
+                        <input [(ngModel)]="user.phoneNumber" class="rounded" type="text" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input [(ngModel)]="user.email" class="rounded" type="text" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>
+                        <input [(ngModel)]="user.userName" class="rounded" type="text" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input [(ngModel)]="user.password" class="rounded" type="text" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Reviewer Status:</td>
+                    <td>{{user.reviewer}}</td>
+                </tr>
+                <tr>
+                    <td>Admin Status:</td>
+                    <td>{{user.admin}}</td>
+                </tr>
+            </table>
+        </main>
+    </div>
+    <span>
+        <span><a routerLink="/users/edit/{{user.id}}" class="btn btn-sm btn-warning">Edit</a></span>
+        <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+    </span>
+</div>

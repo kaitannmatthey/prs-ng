@@ -1,0 +1,41 @@
+<!-- May want to change the way this looks later -->
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}}</span>
+        <span><a routerLink='/products/create'>
+                <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+        </span>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>Photo</th>
+        <th><a (click)="sortBy('partNumber')">Part Number</a></th>
+        <th><a (click)="sortBy('name')">Name</a></th>
+        <th><a (click)="sortBy('vendor')">Vendor</a></th> <!-- This sort does not work yet -->
+        <th><a (click)="sortBy('price')">Price</a></th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let product of products | sort:sortCriteria:sortOrder">
+        <!-- If there's no image, display a no image photo -->
+        <td *ngIf="product.photoPath != '' && product.photoPath != null; else noImage" align="center">
+            <img src="{{product.photoPath}}" height="50px">
+        </td>
+        <ng-template #noImage>
+            <td align="center">
+                <img src="../../../../assets/noImage.png" height="50px">
+            </td>
+        </ng-template>
+        <td>{{product.partNumber}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.vendor.name}}</td>
+        <td>{{"$" + product.price}}</td>
+        <td>
+            <a routerLink='/products/detail/{{product.id}}'><img src="assets/details.png" width='20' height="20"
+                    title="Details"></a>
+            |
+            <a routerLink='/products/edit/{{product.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+                    title='Edit'></a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,57 @@
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>
+            <h1>{{title}}</h1>
+        </span>
+    </div>
+</div>
+<p *ngIf="!product">Loading...</p>
+<div *ngIf="product">
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>Photo Link:</td>
+                <td>
+                    <input [(ngModel)]="product.photoPath" class="rounded" type="text">
+                    <!-- Would love to add functionality to upload an actual photo, or even to automatically choose photo when adding by search -->
+                </td>
+            </tr>
+            <tr>
+                <td>Part Number:</td>
+                <td>
+                    <input [(ngModel)]="product.partNumber" class="rounded" type="text">
+                    <!-- Would love to autopopulate with add by search function -->
+                </td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input [(ngModel)]="product.name" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>Vendor:</td>
+                <td>
+                    <select [(ngModel)]="product.vendor" class="rounded" [compareWith]="compareVendor">
+                        <option *ngFor="let vendor of vendors" [ngValue]="vendor">
+                            {{"(" + vendor.code + ") " + vendor.name}}
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Unit:</td>
+                <td>
+                    <input [(ngModel)]="product.unit" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td>
+                    <input [(ngModel)]="product.price" class="rounded" type="number">
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span><button (click)="update()" class="btn btn-sm btn-primary">Update</button></span>
+</div>

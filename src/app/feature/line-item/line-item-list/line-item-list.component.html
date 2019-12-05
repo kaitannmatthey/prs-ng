@@ -1,0 +1,39 @@
+<h1 style="padding-top: 25px;">{{title}}</h1>
+<table class="table">
+    <tr>
+        <th>Part Number:</th>
+        <th>Product Description:</th>
+        <th>Vendor:</th>
+        <th>Price:</th>
+        <th>Quantity:</th>
+        <th>Total:</th>
+    </tr>
+    <tr *ngFor="let lineItem of itemsByRequest">
+        <td>{{lineItem.product.partNumber}}</td>
+        <td>{{lineItem.product.name}}</td>
+        <td>{{lineItem.product.vendor.name}}</td>
+        <td>{{"$" + lineItem.product.price}}</td>
+        <td>{{lineItem.quantity}}</td>
+        <td>{{"$" + lineItem.quantity * lineItem.product.price}}</td>
+    </tr>
+    <tr *ngIf="itemsByRequest.length == 0" style="background-color: lightpink;">
+        <td colspan="6" align="center">No Line Items Yet!</td>
+    </tr>
+    <app-line-item-create *ngIf="addNew"></app-line-item-create>
+    <tr>
+        <td colspan="4"></td>
+        <td>Subtotal:</td>
+        <td>{{"$" + request.total}}</td>
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+        <td>Tax:</td>
+        <td>${{(request.total * localTax) | number}}</td>
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+        <td>Total:</td>
+        <td>${{((request.total * localTax) + request.total) | number}}</td>
+    </tr>
+</table>
+<button (click)="clicked()" class="btn btn-sm btn-success">Add Item</button>
