@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from 'src/app/service/request.service';
 import { Request } from 'src/app/model/request.class';
-import { Router, ActivatedRoute } from '@angular/router';
+import { RequestService } from 'src/app/service/request.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LineItem } from 'src/app/model/line-item';
 import { LineItemService } from 'src/app/service/line-item.service';
 
 @Component({
-  selector: 'app-request-detail',
-  templateUrl: './request-detail.component.html',
-  styleUrls: ['./request-detail.component.css']
+  selector: 'app-review-detail',
+  templateUrl: './review-detail.component.html',
+  styleUrls: ['./review-detail.component.css']
 })
-export class RequestDetailComponent implements OnInit {
-  title: string = "Request Detail";
+export class ReviewDetailComponent implements OnInit {
+  title: string = "Request Review";
   request: Request = new Request();
   id: number;
   lineItems: LineItem[] = [];
@@ -28,8 +28,13 @@ export class RequestDetailComponent implements OnInit {
     this.lineItemService.list(this.id).subscribe(jr => this.lineItems = jr.data as LineItem[])
   }
 
-  delete() {
-    this.requestService.delete(this.id).subscribe(jr => this.router.navigateByUrl("requests/list"));
+  approve() {
+    this.requestService.approve(this.request).subscribe(jr => this.router.navigateByUrl("/requests/list-review"))
+    
+  }
+  
+  reject() {
+    this.requestService.reject(this.request).subscribe(jr => this.router.navigateByUrl("/requests/list-review"));
   }
 
 }

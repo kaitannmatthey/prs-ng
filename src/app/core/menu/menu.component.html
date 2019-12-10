@@ -1,7 +1,22 @@
-<nav>
-    <ul>
+<nav class="d-flex bd-highlight">
+    <ul class="p-2 w-100">
         <li *ngFor="let menuItem of menuItems" title="{{menuItem.tooltip}}">
             <a routerLink="{{menuItem.href}}">{{menuItem.display}}</a>
         </li>
+        <li *ngIf="user.reviewer" title="Review List"><a routerLink="/requests/list-review">Review</a></li>
     </ul>
+    <div class="flex-shrink-1 d-flex flex-row" id="welcomeUser">
+        <img src="../../../assets/user.png" class="d-flex">
+    </div>
+    <div class="dropdown" id="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Welcome, {{user.firstName}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" routerLink="/users/edit/{{id}}">Edit Profile</a>
+              <a class="dropdown-item" routerLink="/requests/check-on/{{id}}">See Requests</a>
+              <a class="dropdown-item" routerLink="/requests/create">New Request</a>
+              <a class="dropdown-item" routerLink="/users/login">Logout</a>
+            </div>
+          </div>
 </nav>

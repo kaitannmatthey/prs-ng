@@ -1,0 +1,9 @@
+<app-menu></app-menu>
+<div id="getStarted">
+    <p>Get Started!</p>
+    <div id="buttons">
+        <button (click)="new()" class="btn btn-sm btn-primary">New</button>
+        <button routerLink="/requests/check-on/{{id}}" class="btn btn-sm btn-primary">Check My Request Status</button>
+        <button (click)="browse()" class="btn btn-sm btn-primary">Browse Catalog</button>
+    </div>
+</div>

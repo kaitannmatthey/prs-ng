@@ -15,6 +15,7 @@ export class RequestCreateComponent implements OnInit {
   title: string = "Create New Request"
   request: Request = new Request();
   users: User[] = [];
+  requestId: number;
 
   constructor(
     private requestService: RequestService,
@@ -29,7 +30,7 @@ export class RequestCreateComponent implements OnInit {
   
   save(): void {
     this.request.user = this.systemService.loggedInUser;
-    this.requestService.save(this.request).subscribe(jr => this.router.navigateByUrl("/requests/list"));
+    this.requestService.save(this.request).subscribe(jr => this.router.navigateByUrl("/requests/list")); 
   }
 
 }

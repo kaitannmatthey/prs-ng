@@ -10,12 +10,12 @@ import { LineItem } from '../model/line-item';
 
 export class LineItemService {
     url: string = "http://localhost:8080/line-items/";
+    lineItemEditId: number;
 
     constructor(private http: HttpClient) { }
 
-    list(): Observable<JsonResponse> {
-        // making a get request to retrieve all users, returns as a JsonResponse
-        return this.http.get(this.url) as Observable<JsonResponse>;
+    list(id: number): Observable<JsonResponse> {
+        return this.http.get(this.url + "lines-for-pr/" + id) as Observable<JsonResponse>;
     }
 
     get(id: number): Observable<JsonResponse> {

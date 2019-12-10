@@ -4,7 +4,7 @@ import { LineItemService } from 'src/app/service/line-item.service';
 import { SystemService } from 'src/app/service/system.service';
 import { BaseComponent } from '../../base/base.component';
 import { Request } from 'src/app/model/request.class';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from 'src/app/service/request.service';
 
 @Component({
@@ -15,12 +15,15 @@ import { RequestService } from 'src/app/service/request.service';
 export class LineItemListComponent extends BaseComponent implements OnInit {
   title: string = "Line Items";
   lineItems: LineItem[] = [];
+  lineItem: LineItem = new LineItem();
   id: number;
+  lineItemId: number = -1;
   itemsByRequest: LineItem[] = [];
   requests: Request[] =[];
   request: Request = new Request();
   localTax: number = 0.0575;
   public addNew: boolean = false;
+  public edit: Boolean = false;
 
   constructor(private lineItemService: LineItemService,
     protected systemService: SystemService,
@@ -34,32 +37,26 @@ export class LineItemListComponent extends BaseComponent implements OnInit {
 
     this.route.params.subscribe(parms => this.id = parms['id']);
     console.log("request id ", this.id);
-
-    this.requestService.list().subscribe(jr => {
-      this.requests = jr.data as Request[];
-      for (let r of this.requests) {
-        if(r.id == this.id) {
-          this.request = r;
-        }
-      }
-    });
-
-    // subscribe to the list of requests we get from the get request
-    this.lineItemService.list().subscribe(jr => {
-      // add the data inside the returned JsonResponse to the array of requests
-      this.lineItems = jr.data as LineItem[];
-      console.log("all line items ", this.lineItems);
-      for (let lineItem of this.lineItems) {
-        if(lineItem.request.id == this.id) {
-          this.itemsByRequest.push(lineItem);
-        }
-      }
-    });
-    console.log("add new? ", this.addNew);
+    
+    this.lineItemService.list(this.id).subscribe(jr => this.itemsByRequest = jr.data as LineItem[]);
+  
+    this.requestService.get(this.id).subscribe(jr => this.request = jr.data as Request);
   }
 
   clicked() {
     this.addNew = true;
     console.log("clicked - add new is now ", this.addNew);
   }
-}
+
+  delete(id: number) {
+    this.lineItemId = id;
+    console.log("li id ", this.lineItemId);
+    this.lineItemService.delete(this.lineItemId).subscribe(jr => location.reload());
+  }
+
+  editLineItem(id: number) {
+    this.lineItemId = id;
+    this.lineItemService.lineItemEditId = id;
+    this.edit = true;
+  }
+} 

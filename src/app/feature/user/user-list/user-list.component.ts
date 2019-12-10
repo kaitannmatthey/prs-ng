@@ -24,8 +24,8 @@ export class UserListComponent extends BaseComponent implements OnInit {
     super.ngOnInit();
     console.log("User list - Verify we have a logged in user!");
     console.log("User: ", this.loggedInUser);
-    console.log("Admin? ", this.isAdmin); // this isn't working
-    console.log("Reviewer? ", this.isReviewer); // this isn't working
+    console.log("Admin? ", this.isAdmin); 
+    console.log("Reviewer? ", this.isReviewer);
 
     // subscribe to the list of users we get from the get request
     this.userService.list().subscribe(jr => {

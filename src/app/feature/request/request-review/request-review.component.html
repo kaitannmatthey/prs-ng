@@ -1,0 +1,30 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}}</span>
+    </div>
+</div>
+<div *ngIf="user.reviewer">
+    <table class="table">
+        <tr>
+            <th><a (click)="sortBy('dateNeeded')">Date Needed</a></th>
+            <th><a (click)="sortBy('user')">User</a></th> <!-- This sort does not work yet -->
+            <th><a (click)="sortBy('description')">Description</a></th>
+            <th><a (click)="sortBy('total')">Total</a></th>
+            <th><a (click)="sortBy('status')">Status</a></th>
+            <th style="text-align: center;">Action</th>
+        </tr>
+        <tr *ngFor="let request of requests | sort:sortCriteria:sortOrder">
+            <td>{{request.dateNeeded}}</td>
+            <td>{{request.user.userName}}</td>
+            <td>{{request.description}}</td>
+            <td>{{"$" + request.total}}</td>
+            <td>{{request.status}}</td>
+            <td align="center">
+                <a routerLink='/requests/review-detail/{{request.id}}'><img src="assets/review.png" width='20' height="20"
+                        title="Review"></a>
+            </td>
+        </tr>
+    </table>
+</div>
+<p *ngIf="!user.reviewer" style="color: red;">You do not have permission to view this page!</p>

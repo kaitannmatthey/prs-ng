@@ -1,8 +1,7 @@
 <app-menu></app-menu>
 <div class="component">
     <section class="heading">
-        <span class="page-title font-weight-bold font-italic">{{title}}</span>
-        <span> | <a routerLink="/requests/list">Return to list...</a></span>
+        <span class="page-title font-weight-bold">{{title}}</span>
     </section>
     <p *ngIf="!request">Loading...</p>
     <div *ngIf="request&&request.user">
@@ -93,8 +92,8 @@
             <td>{{((request.total * localTax) + request.total) | currency}}</td>
         </tr>
     </table>
-    <span>
-        <span><a routerLink="/requests/edit/{{request.id}}" class="btn btn-sm btn-warning">Edit</a></span>
-        <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
-    </span>
+    Reason for Rejection: <input [(ngModel)]="reasonForRejection" class="rounded" type="text">
+    <br>
+    <button (click)="approve()" class="btn btn-sm btn-success">Approve</button>
+    <button (click)="reject()" class="btn btn-sm btn-danger">Reject</button>
 </div>

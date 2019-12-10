@@ -27,6 +27,12 @@ import { ProductDetailComponent } from './feature/product/product-detail/product
 import { RequestDetailComponent } from './feature/request/request-detail/request-detail.component';
 import { LineItemListComponent } from './feature/line-item/line-item-list/line-item-list.component';
 import { LineItemCreateComponent } from './feature/line-item/line-item-create/line-item-create.component';
+import { LineItemEditComponent } from './feature/line-item/line-item-edit/line-item-edit.component';
+import { RequestReviewComponent } from './feature/request/request-review/request-review.component';
+import { ReviewDetailComponent } from './feature/request/review-detail/review-detail.component';
+import { HomeComponent } from './core/home/home.component';
+import { CheckOnComponent } from './feature/request/check-on/check-on.component';
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +58,13 @@ import { LineItemCreateComponent } from './feature/line-item/line-item-create/li
     ProductDetailComponent,
     RequestDetailComponent,
     LineItemListComponent,
-    LineItemCreateComponent
+    LineItemCreateComponent,
+    LineItemEditComponent,
+    RequestReviewComponent,
+    ReviewDetailComponent,
+    HomeComponent,
+    CheckOnComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

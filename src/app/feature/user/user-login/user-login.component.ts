@@ -40,7 +40,7 @@ export class UserLoginComponent extends BaseComponent implements OnInit {
           // should be g2g!
           this.user = jr.data as User;
           this.systemService.loggedInUser = this.user;
-          this.router.navigateByUrl('/users/list');
+          this.router.navigateByUrl('/home');
         }
       }
       else {

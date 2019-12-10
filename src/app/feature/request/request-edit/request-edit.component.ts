@@ -53,4 +53,8 @@ export class RequestEditComponent implements OnInit {
     return a && b && a.deliveryMode === b.deliveryMode;
   }
 
+  submitReview(): void {
+    this.requestService.submitReview(this.request).subscribe(jr => this.router.navigateByUrl("/requests/list"));
+  }
+
 }

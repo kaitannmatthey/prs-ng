@@ -17,6 +17,10 @@ import { ProductEditComponent } from './feature/product/product-edit/product-edi
 import { ProductDetailComponent } from './feature/product/product-detail/product-detail.component';
 import { RequestEditComponent } from './feature/request/request-edit/request-edit.component';
 import { RequestDetailComponent } from './feature/request/request-detail/request-detail.component';
+import { RequestReviewComponent } from './feature/request/request-review/request-review.component';
+import { ReviewDetailComponent } from './feature/request/review-detail/review-detail.component';
+import { HomeComponent } from './core/home/home.component';
+import { CheckOnComponent } from './feature/request/check-on/check-on.component';
 
 
 const routes: Routes = [
@@ -38,8 +42,12 @@ const routes: Routes = [
   { path: "requests/create", component: RequestCreateComponent },
   { path: "requests/edit/:id", component: RequestEditComponent },
   { path: "requests/detail/:id", component: RequestDetailComponent },
+  { path: "requests/list-review", component: RequestReviewComponent },
+  { path: "requests/review-detail/:id", component: ReviewDetailComponent },
+  { path: "requests/check-on/:id", component: CheckOnComponent },
+  { path: "home", component: HomeComponent },
   // If you mess up in any way, it'll send you to this page
-  { path: '**', component: UserListComponent } // NOTE: I want to change this later to something else
+  { path: '**', component: HomeComponent } // NOTE: I want to change this later to something else
 ]
 
 @NgModule({

@@ -23,3 +23,21 @@ a {
 a:hover {
 	background-color: black;
 }
+
+#welcomeUser img {
+	height: 25px;
+	margin: 8px;
+}
+
+.btn {
+	color: white;
+}
+
+.dropdown-menu {
+	background-color: #454545;
+}
+
+.dropdown-item:hover {
+	color: white;
+	background-color: blue;
+}

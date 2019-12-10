@@ -1,6 +1,7 @@
 <h1 style="padding-top: 25px;">{{title}}</h1>
 <table class="table">
     <tr>
+        <th></th>
         <th>Part Number:</th>
         <th>Product Description:</th>
         <th>Vendor:</th>
@@ -9,31 +10,49 @@
         <th>Total:</th>
     </tr>
     <tr *ngFor="let lineItem of itemsByRequest">
-        <td>{{lineItem.product.partNumber}}</td>
-        <td>{{lineItem.product.name}}</td>
-        <td>{{lineItem.product.vendor.name}}</td>
-        <td>{{"$" + lineItem.product.price}}</td>
-        <td>{{lineItem.quantity}}</td>
-        <td>{{"$" + lineItem.quantity * lineItem.product.price}}</td>
+        <td *ngIf="!edit || lineItem.id != lineItemId">
+            <button (click)="editLineItem(lineItem.id)"
+                style="background-color: white; background-image: url(assets/pencil-icon.png); background-size: 20px 20px; width: 20px; height: 20px; border: 0;"
+                title="Delete">
+            </button>
+            |
+            <button (click)="delete(lineItem.id)"
+                style="background-image: url(assets/delete.jpg); background-size: 20px 20px; width: 20px; height: 20px; border: 0;"
+                title="Delete">
+            </button>
+        </td>
+        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.product.partNumber}}</td>
+        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.product.name}}</td>
+        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.product.vendor.name}}</td>
+        <td *ngIf="!edit || lineItem.id != lineItemId">{{"$" + lineItem.product.price}}</td>
+        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.quantity}}</td>
+        <td *ngIf="!edit || lineItem.id != lineItemId">{{"$" + lineItem.quantity * lineItem.product.price}}</td>
+        <td *ngIf="edit && lineItemId == lineItem.id" colspan="7">
+            <app-line-item-edit></app-line-item-edit>
+        </td>
     </tr>
     <tr *ngIf="itemsByRequest.length == 0" style="background-color: lightpink;">
-        <td colspan="6" align="center">No Line Items Yet!</td>
+        <td colspan="7" align="center">No Line Items Yet!</td>
     </tr>
-    <app-line-item-create *ngIf="addNew"></app-line-item-create>
+    <tr *ngIf="addNew">
+        <td colspan="7">
+            <app-line-item-create></app-line-item-create>
+        </td>
+    </tr>
     <tr>
-        <td colspan="4"></td>
+        <td colspan="5"></td>
         <td>Subtotal:</td>
-        <td>{{"$" + request.total}}</td>
+        <td>{{request.total | currency}}</td>
     </tr>
     <tr>
-        <td colspan="4"></td>
+        <td colspan="5"></td>
         <td>Tax:</td>
-        <td>${{(request.total * localTax) | number}}</td>
+        <td>{{(request.total * localTax) | currency}}</td>
     </tr>
     <tr>
-        <td colspan="4"></td>
+        <td colspan="5"></td>
         <td>Total:</td>
-        <td>${{((request.total * localTax) + request.total) | number}}</td>
+        <td>{{((request.total * localTax) + request.total) | currency}}</td>
     </tr>
 </table>
 <button (click)="clicked()" class="btn btn-sm btn-success">Add Item</button>
