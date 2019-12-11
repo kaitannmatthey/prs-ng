@@ -21,7 +21,7 @@
         <td>{{request.dateNeeded}}</td>
         <td>{{request.user.userName}}</td>
         <td>{{request.description}}</td>
-        <td>{{"$" + request.total}}</td>
+        <td>{{((request.total * localTax) + request.total) | currency}}</td>
         <td>{{request.status}}</td>
         <td>
             <a routerLink='/requests/detail/{{request.id}}'><img src="assets/details.png" width='20' height="20"

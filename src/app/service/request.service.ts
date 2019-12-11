@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JsonResponse } from '../model/json-response';
 import { Request } from '../model/request.class';
-import { User } from '../model/user.class';
 
 @Injectable({
     providedIn: "root"
@@ -12,6 +11,7 @@ import { User } from '../model/user.class';
 export class RequestService {
     url: string = "http://localhost:8080/requests/";
     requests: Request[] = [];
+    editRequest: Request = new Request();
 
     constructor(private http: HttpClient) { }
 

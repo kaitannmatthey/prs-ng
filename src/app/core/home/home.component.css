@@ -1,3 +1,7 @@
+html {
+    overflow: hidden;
+}
+
 #getStarted {
     width: 400px;
     height: 400px;
@@ -11,8 +15,28 @@
 
 #getStarted h1 {
     margin-top: 100px;
+    margin-bottom: 40px;
 }
 
 #getStarted button {
     margin: 0px 10px;
+}
+
+.component-content {
+    background: url(../../../assets/home.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0;
+    background-color: #F3F2F7;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.menu {
+    position: relative;
+    z-index: 1;
 }

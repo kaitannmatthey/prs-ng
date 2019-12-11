@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
     this.systemService.checkLogin();
     // fill the array with the following menu items
     this.menuItems = [
-      new MenuItem("Home", "/home", "Home"),
+      // new MenuItem("Home", "/home", "Home"),
       new MenuItem("User", "/users/list", "Users List"),
       new MenuItem("Vendor", "/vendors/list", "Vendors List"),
       new MenuItem("Product", "/products/list", "Products List"),

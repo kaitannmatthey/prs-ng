@@ -1,0 +1,18 @@
+.component-content {
+    z-index: 1;
+}
+
+.component-content:before {
+    content: " ";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;  
+    opacity: .3; 
+    z-index: -1;
+    background: url(../../../../assets/login-bg.jpg);
+    background-size: cover;
+}
+
+

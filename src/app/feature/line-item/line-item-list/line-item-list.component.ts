@@ -45,12 +45,21 @@ export class LineItemListComponent extends BaseComponent implements OnInit {
     this.loadData();
     this.productService.list().subscribe(jr => this.products = jr.data as Product[]);
 
-    this.requestService.get(this.id).subscribe(jr => this.request = jr.data as Request);
+    this.requestService.get(this.id).subscribe(jr => {
+      this.request = jr.data as Request
+      console.log("request on init: ", this.request);
+    } );
   }
   
   loadData() {
     this.lineItemService.list(this.id).subscribe(jr => this.itemsByRequest = jr.data as LineItem[]);
-    this.requestService.get(this.id).subscribe(jr => this.newLineItem.request = jr.data as Request);
+    this.requestService.get(this.id).subscribe(jr => {
+      this.newLineItem.request = jr.data as Request;
+      console.log("new line request: ", this.newLineItem.request);
+      this.requestService.editRequest = this.newLineItem.request;
+      console.log("req serv editreq: ", this.requestService.editRequest);
+      this.request.total = this.newLineItem.request.total;
+    });
     // this.requestService.get(this.id).subscribe(jr => this.request = jr.data as Request);
     this.newLineItem = new LineItem();
   }

@@ -11,6 +11,7 @@ import { SystemService } from 'src/app/service/system.service';
 export class RequestListComponent extends BaseComponent implements OnInit {
   title: string = "Request List";
   requests: Request[] = [];
+  localTax: number = 0.0575;
 
   constructor(
     private requestService: RequestService,
