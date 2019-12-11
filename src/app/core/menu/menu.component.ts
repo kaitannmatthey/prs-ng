@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'src/app/model/menu-item';
 import { SystemService } from 'src/app/service/system.service';
 import { User } from 'src/app/model/user.class';
-// import 'bootstrap/dist/js/bootstrap.bundle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +15,8 @@ export class MenuComponent implements OnInit {
   user: User = new User();
   id: number;
 
-  constructor(private systemService: SystemService) { }
+  constructor(private systemService: SystemService,
+    private router: Router) { }
 
   ngOnInit() {
     this.systemService.checkLogin();
@@ -33,4 +34,8 @@ export class MenuComponent implements OnInit {
     this.id = this.user.id;
   }
 
+  logout() {
+    this.systemService.setLoggedIn(false);
+    this.router.navigateByUrl("users/login");
+  }
 }

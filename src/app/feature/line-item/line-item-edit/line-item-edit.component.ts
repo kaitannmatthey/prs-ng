@@ -35,14 +35,7 @@ export class LineItemEditComponent implements OnInit {
     this.lineItemService.get(this.lineItemService.lineItemEditId).subscribe(jr => this.lineItem = jr.data as LineItem)
     console.log("the line item is: ", this.lineItem)
   }
-  
-  update(): void {
-    console.log("line item updated: ", this.lineItem);
-    this.lineItemService.update(this.lineItem).subscribe(jr => location.reload());
-  }
 
-  compareProduct(a: Product, b: Product): boolean {
-    return a && b && a.id === b.id;
-  } 
+   
 
 }

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 
 export class SystemService {
     loggedInUser: User = null;
+    
+    private loggedInStatus = JSON.parse(localStorage.getItem("loggedIn") || "false")
 
     constructor(private router: Router) { }
 
@@ -16,6 +18,14 @@ export class SystemService {
     }
     isReviewer(): boolean {
         return (this.loggedInUser == null) ? false : this.loggedInUser.reviewer;
+    }
+    setLoggedIn(value: boolean) {
+        this.loggedInStatus = value;
+        localStorage.setItem("loggedIn", "true");
+    }
+
+    get isLoggedIn() {
+        return JSON.parse(localStorage.getItem("loggedIn") || this.loggedInStatus.toString());
     }
 
     checkLogin(): void {

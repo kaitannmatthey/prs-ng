@@ -2,6 +2,7 @@
 <div class="component">
     <section class="heading">
         <span class="page-title font-weight-bold">{{title}}</span>
+        <span> | <a routerLink="/requests/list-review">Return to list...</a></span>
     </section>
     <p *ngIf="!request">Loading...</p>
     <div *ngIf="request&&request.user">

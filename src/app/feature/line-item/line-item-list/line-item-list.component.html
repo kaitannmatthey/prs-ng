@@ -3,7 +3,7 @@
     <tr>
         <th></th>
         <th>Part Number:</th>
-        <th>Product Description:</th>
+        <th><a (click)="sortBy('product')">Product Description:</a></th>
         <th>Vendor:</th>
         <th>Price:</th>
         <th>Quantity:</th>
@@ -13,7 +13,7 @@
         <td *ngIf="!edit || lineItem.id != lineItemId">
             <button (click)="editLineItem(lineItem.id)"
                 style="background-color: white; background-image: url(assets/pencil-icon.png); background-size: 20px 20px; width: 20px; height: 20px; border: 0;"
-                title="Delete">
+                title="Edit">
             </button>
             |
             <button (click)="delete(lineItem.id)"
@@ -21,22 +21,57 @@
                 title="Delete">
             </button>
         </td>
-        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.product.partNumber}}</td>
-        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.product.name}}</td>
-        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.product.vendor.name}}</td>
-        <td *ngIf="!edit || lineItem.id != lineItemId">{{"$" + lineItem.product.price}}</td>
-        <td *ngIf="!edit || lineItem.id != lineItemId">{{lineItem.quantity}}</td>
-        <td *ngIf="!edit || lineItem.id != lineItemId">{{"$" + lineItem.quantity * lineItem.product.price}}</td>
-        <td *ngIf="edit && lineItemId == lineItem.id" colspan="7">
-            <app-line-item-edit></app-line-item-edit>
+        <td *ngIf="!edit || lineItem.id != updatedLineItem.id">{{lineItem.product.partNumber}}</td>
+        <td *ngIf="!edit || lineItem.id != updatedLineItem.id">{{lineItem.product.name}}</td>
+        <td *ngIf="!edit || lineItem.id != updatedLineItem.id">{{lineItem.product.vendor.name}}</td>
+        <td *ngIf="!edit || lineItem.id != updatedLineItem.id">{{lineItem.product.price | currency}}</td>
+        <td *ngIf="!edit || lineItem.id != updatedLineItem.id">{{lineItem.quantity}}</td>
+        <td *ngIf="!edit || lineItem.id != updatedLineItem.id">{{lineItem.quantity * lineItem.product.price | currency}}</td>
+        <!-- Edit Line Item -->
+        <td *ngIf="edit && updatedLineItem.id == lineItem.id" colspan="7">
+            <div *ngIf="lineItem" style="display: inline-block;">
+                <div style="float: left;">
+                    <p *ngIf="lineItem" style="float: left; padding-right: 5px;">Product:</p>
+                    <select [(ngModel)]="updatedLineItem.product" class="rounded" style="float: left;"
+                        [compareWith]="compareProduct">
+                        <option *ngFor="let product of products" [ngValue]="product">
+                            {{product.name}}
+                        </option>
+                    </select>
+                </div>
+                <div style="float: left;">
+                    <p *ngIf="lineItem" style="float: left; padding-right: 5px; padding-left: 15px;">Quantity:</p>
+                    <input [(ngModel)]="updatedLineItem.quantity" class="rounded" type="number">
+                </div>
+                <div style="float: left; margin: 0px 0px 0px 50px;">
+                    <button class="btn btn-sm btn-success" (click)="update()">Update</button>
+                </div>
+            </div>
         </td>
     </tr>
     <tr *ngIf="itemsByRequest.length == 0" style="background-color: lightpink;">
         <td colspan="7" align="center">No Line Items Yet!</td>
     </tr>
+    <!-- Add New Item -->
     <tr *ngIf="addNew">
         <td colspan="7">
-            <app-line-item-create></app-line-item-create>
+            <div *ngIf="lineItem" style="display: inline-block;">
+                <div style="float: left;;">
+                    <p *ngIf="lineItem" style="float: left; padding-right: 5px;">Product:</p>
+                    <select [(ngModel)]="newLineItem.product" class="rounded" style="float: left;">
+                        <option *ngFor="let product of products" [ngValue]="product">
+                            {{product.name}}
+                        </option>
+                    </select>
+                </div>
+                <div style="float: left;">
+                    <p *ngIf="lineItem" style="float: left; padding-right: 5px; padding-left: 15px;">Quantity:</p>
+                    <input [(ngModel)]="newLineItem.quantity" class="rounded" type="number">
+                </div>
+                <div style="float: left; margin: 0px 0px 0px 50px;">
+                    <button class="btn btn-sm btn-success" (click)="save()">Add</button>
+                </div>
+            </div>
         </td>
     </tr>
     <tr>

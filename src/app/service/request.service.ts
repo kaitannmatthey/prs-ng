@@ -37,6 +37,7 @@ export class RequestService {
     }
 
     submitReview(request: Request) {
+        console.log("sr req ", request);
         return this.http.put(this.url + "submit-review", request) as Observable<JsonResponse>;
 
     }

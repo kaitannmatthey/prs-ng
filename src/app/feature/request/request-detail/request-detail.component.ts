@@ -13,7 +13,7 @@ import { LineItemService } from 'src/app/service/line-item.service';
 export class RequestDetailComponent implements OnInit {
   title: string = "Request Detail";
   request: Request = new Request();
-  id: number;
+  id: number = 0;
   lineItems: LineItem[] = [];
   localTax = 0.0575;
 
@@ -25,7 +25,8 @@ export class RequestDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(parms =>this.id = parms['id']);
     this.requestService.get(this.id).subscribe(jr => this.request = jr.data as Request);
-    this.lineItemService.list(this.id).subscribe(jr => this.lineItems = jr.data as LineItem[])
+    this.lineItemService.list(this.id).subscribe(jr => this.lineItems = jr.data as LineItem[]);
+    console.log("id", this.id);
   }
 
   delete() {

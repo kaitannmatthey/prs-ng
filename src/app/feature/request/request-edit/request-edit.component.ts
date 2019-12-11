@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user.class';
 import { UserService } from 'src/app/service/user.service';
 import { SystemService } from 'src/app/service/system.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-request-edit',
@@ -15,7 +16,7 @@ export class RequestEditComponent implements OnInit {
   title: string = "Edit Request";
   request: Request = new Request();
   users: User[] = [];
-  id: number;
+  id: number = 0;
   loggedInUser: User = new User();
 
   constructor(
@@ -23,7 +24,8 @@ export class RequestEditComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    protected systemService: SystemService) { }
+    protected systemService: SystemService,
+    private location: Location) { }
 
   ngOnInit() {
     // get the id from the url
@@ -55,6 +57,10 @@ export class RequestEditComponent implements OnInit {
 
   submitReview(): void {
     this.requestService.submitReview(this.request).subscribe(jr => this.router.navigateByUrl("/requests/list"));
+  }
+
+  back(): void {
+    this.location.back();
   }
 
 }

@@ -41,3 +41,7 @@ a:hover {
 	color: white;
 	background-color: blue;
 }
+
+a .dropdown-item {
+	color: white;
+}

@@ -5,6 +5,7 @@ import { RequestService } from 'src/app/service/request.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { SystemService } from 'src/app/service/system.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-request-create',
@@ -21,7 +22,8 @@ export class RequestCreateComponent implements OnInit {
     private requestService: RequestService,
     private userService: UserService,
     private systemService: SystemService,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit() {
     // fill list of users
@@ -31,6 +33,10 @@ export class RequestCreateComponent implements OnInit {
   save(): void {
     this.request.user = this.systemService.loggedInUser;
     this.requestService.save(this.request).subscribe(jr => this.router.navigateByUrl("/requests/list")); 
+  }
+
+  back(): void {
+    this.location.back();
   }
 
 }

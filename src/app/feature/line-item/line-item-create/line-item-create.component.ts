@@ -7,6 +7,8 @@ import { ProductService } from 'src/app/service/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Request } from 'src/app/model/request.class';
+import { User } from 'src/app/model/user.class';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-line-item-create',
@@ -18,6 +20,7 @@ export class LineItemCreateComponent implements OnInit {
   request: Request = new Request();
   products: Product[] = [];
   id: number = 0;
+  user: User = new User();
   
   constructor(
     private lineItemService: LineItemService,
@@ -34,10 +37,8 @@ export class LineItemCreateComponent implements OnInit {
   update(): void {
     this.lineItemService.update(this.lineItem).subscribe(jr => location.reload());
   }
-  save(): void {
-    this.lineItemService.save(this.lineItem).subscribe(jr => location.reload());
-  }
-
+  
+  
   
 
 }
