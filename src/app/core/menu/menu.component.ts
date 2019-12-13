@@ -33,9 +33,4 @@ export class MenuComponent implements OnInit {
     this.user = this.systemService.loggedInUser;
     this.id = this.user.id;
   }
-
-  logout() {
-    this.systemService.setLoggedIn(false);
-    this.router.navigateByUrl("users/login");
-  }
 }

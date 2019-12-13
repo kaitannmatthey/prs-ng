@@ -1,6 +1,6 @@
 <nav class="d-flex bd-highlight">
     <ul class="p-2 w-100">
-        <li title="Home"><a routerLink="/home"><img src="../../../assets/appruvitLogo-05.png" height="35px"></a></li>
+        <li title="Home"><a routerLink="/home"><img id="logo" src="../../../assets/appruvitLogo-05.png"></a></li>
         <li *ngFor="let menuItem of menuItems" title="{{menuItem.tooltip}}">
             <a routerLink="{{menuItem.href}}">{{menuItem.display}}</a>
         </li>
@@ -17,7 +17,7 @@
               <a class="dropdown-item" routerLink="/users/edit/{{id}}">Edit Profile</a>
               <a class="dropdown-item" routerLink="/requests/check-on/{{id}}">See Requests</a>
               <a class="dropdown-item" routerLink="/requests/create">New Request</a>
-              <a class="dropdown-item" (click)="logout()">Logout</a>
+              <a class="dropdown-item" routerLink="/users/login">Logout</a>
             </div>
           </div>
 </nav>

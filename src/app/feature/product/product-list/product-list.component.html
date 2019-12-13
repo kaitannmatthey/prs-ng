@@ -1,10 +1,10 @@
 <app-menu></app-menu>
 <!-- May want to change the way this looks later -->
 <div class='component-content'>
-    <div class='lefthalf'>
+    <div class='lefthalf d-inline-flex flex-row align-items-center'>
         <span class='component-title'>{{title}}</span>
         <span><a routerLink='/products/create'>
-                <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+                <div id='createnew' width='20' height='20'  title='Add New'></div></a>
         </span>
     </div>
 </div>
@@ -31,12 +31,11 @@
         <td>{{product.name}}</td>
         <td>{{product.vendor.name}}</td>
         <td>{{"$" + product.price}}</td>
-        <td>
-            <a routerLink='/products/detail/{{product.id}}'><img src="assets/details.png" width='20' height="20"
-                    title="Details"></a>
+        <td class=" d-inline-flex flex-row align-items-center">
+            <a routerLink='/products/detail/{{product.id}}'><div id="detail" width='30' height="30"
+                    title="Details"></div></a>
             |
-            <a routerLink='/products/edit/{{product.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
-                    title='Edit'></a>
+            <a routerLink='/products/edit/{{product.id}}'><div id="edit" width='30' height="30" title='Edit'></div></a>
         </td>
     </tr>
 </table>

@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+th {
+    font-family: Open Sans, sans-serif;
+}
+
+td {
+    font-family: Open Sans, sans-serif;
+}
+
+.component-title {
+    font-family: Quicksand, sans-serif;
+    padding: 0 10px;
+    font-size: 1.5em;
+}
+
+#createnew {
+    background-image: url("../src/assets/plus.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: contain;
+}
+
+#createnew:hover {
+    background-image: url("../src/assets/plus-hover.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: contain;
+}
+
+#edit {
+    background-image: url("../src/assets/pencil.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: contain;
+    margin: 5px;
+}
+
+#edit:hover {
+    background-image: url("../src/assets/pencil-hover.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: contain;
+    margin: 5px;
+}
+
+#detail {
+    background-image: url("../src/assets/detail.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: contain;
+    margin: 5px;
+}
+
+#detail:hover {
+    background-image: url("../src/assets/detail-hover.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: contain;
+    margin: 5px;
+}
+

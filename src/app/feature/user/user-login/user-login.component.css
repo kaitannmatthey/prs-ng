@@ -15,4 +15,8 @@
     background-size: cover;
 }
 
+.btn:hover {
+    background-color: #7099ff;
+    border-color: #7099ff;
+}
 
